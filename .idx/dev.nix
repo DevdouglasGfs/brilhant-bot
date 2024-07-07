@@ -17,6 +17,8 @@
       "dbaeumer.vscode-eslint"
       "esbenp.prettier-vscode"
       "ssmi.after-dark"
+      "mhutchie.git-graph"
+      "donjayamanne.githistory"
     ];
 
     # Workspace lifecycle hooks

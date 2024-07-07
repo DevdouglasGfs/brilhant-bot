@@ -1,1 +1,24 @@
-{ "dependencies": { "discord.js": "^14.15.3" } }
+{
+  "name": "message-formatter",
+  "type": "module",
+  "module": "index.ts",
+  "dependencies": {
+    "discord.js": "^14.15.3",
+    "dotenv": "^16.4.5",
+    "eslint-config-prettier": "^9.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.14.10",
+    "bun-types": "latest",
+    "prettier": "^3.3.2",
+    "typescript": "^5.5.3"
+  },
+  "scripts": {
+    "dev": "npx pm2 start index.ts --watch --ignore-watch=\"node_modules\".",
+    "restart": "npx pm2 restart",
+    "stop": "npx pm2 stop",
+    "process-list": "npx pm2 ls",
+    "logs": "npx pm2 logs",
+    "build": "npx tsc"
+  }
+}

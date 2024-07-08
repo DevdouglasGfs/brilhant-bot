@@ -3,6 +3,8 @@
   "type": "module",
   "module": "index.ts",
   "dependencies": {
+    "chalk": "^5.3.0",
+    "discord-api-types": "^0.37.92",
     "discord.js": "^14.15.3",
     "dotenv": "^16.4.5",
     "eslint-config-prettier": "^9.1.0"
@@ -14,11 +16,17 @@
     "typescript": "^5.5.3"
   },
   "scripts": {
-    "dev": "npx pm2 start index.ts --watch --ignore-watch=\"node_modules\".",
+    "start": "npx pm2 start . --watch --no-autorestart --no-daemon --ignore-watch node_modules && npx pm2 logs",
     "restart": "npx pm2 restart",
     "stop": "npx pm2 stop",
-    "process-list": "npx pm2 ls",
+    "pm2": "npx pm2",
     "logs": "npx pm2 logs",
-    "build": "npx tsc"
+    "lint": "npx prettier ./",
+
+    "build": "bun build --target=bun --minify --splitting ./index.ts || npx tsc .",
+    "register": "bun run ./src/deployment.ts || npx pm2 start ./src/deployment.ts",
+
+    "critical-delete-command": "bun run ./src/deployment.delete.ts || npx pm2 start ./src/deployment.delete.ts",
+    "critical-delete-command:all": "bun run ./src/deployment.delete.all.ts || npx pm2 start ./src/deployment.delete.all.ts"
   }
 }
